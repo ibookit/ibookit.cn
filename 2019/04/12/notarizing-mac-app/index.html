@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="iBookIt">
 <meta property="og:description" content="How to upload macos App for notarization by command-line toolsAs required by Apple below recently, macos App developers need to upload the Apps they developed to Apple for a notarization before distri">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-21T15:28:14.804Z">
+<meta property="og:updated_time" content="2019-06-21T16:26:36.841Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to upload macos App for notarization by command-line tools">
 <meta name="twitter:description" content="How to upload macos App for notarization by command-line toolsAs required by Apple below recently, macos App developers need to upload the Apps they developed to Apple for a notarization before distri">
@@ -354,7 +354,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-21 23:28:14" itemprop="dateModified" datetime="2019-06-21T23:28:14+08:00">2019-06-21</time>
+                <time title="修改时间：2019-06-22 00:26:36" itemprop="dateModified" datetime="2019-06-22T00:26:36+08:00">2019-06-22</time>
               
             
           </span>
@@ -388,6 +388,13 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
           
 
@@ -407,21 +414,19 @@
 
       
         <h1 id="How-to-upload-macos-App-for-notarization-by-command-line-tools"><a href="#How-to-upload-macos-App-for-notarization-by-command-line-tools" class="headerlink" title="How to upload macos App for notarization by command-line tools"></a>How to upload macos App for notarization by command-line tools</h1><p>As required by Apple below recently, macos App developers need to upload the Apps they developed to Apple for a notarization before distributing the Apps. </p>
-<blockquote>
-<p>With the public release of macOS 10.14.5, we require that all developers creating a Developer ID certificate for the first time notarize their apps, and that all new and updated kernel extensions be notarized as well. This will help give users more confidence that the software they download and run, no matter where they get it from, is not malware by showing a more streamlined Gatekeeper interface. In addition, we’ve made the following enhancements to the notarization process.</p>
-</blockquote>
+<div class="note warning">
+            <p>With the public release of macOS 10.14.5, we require that all developers creating a Developer ID certificate for the first time notarize their apps, and that all new and updated kernel extensions be notarized as well. This will help give users more confidence that the software they download and run, no matter where they get it from, is not malware by showing a more streamlined Gatekeeper interface. In addition, we’ve made the following enhancements to the notarization process.</p>
+          </div>
+
 <p>Refer to <a href="https://developer.apple.com/documentation/security/notarizing_your_app_before_distribution" target="_blank" rel="noopener">Notarizing Your App Before Distribution</a> for more background. </p>
 <h2 id="How-to"><a href="#How-to" class="headerlink" title="How to"></a>How to</h2><p>To integrate the notarization steps into the CI system, we added the following steps in our automation build scripts.</p>
-<h3 id="Upload-the-App-archive"><a href="#Upload-the-App-archive" class="headerlink" title="Upload the App archive"></a>Upload the App archive</h3><p><code>APP_PATH=&quot;./${PRODUCT_NAME}.app&quot;</code><br><code>ZIP_PATH=&quot;./${PRODUCT_NAME}.zip&quot;</code></p>
-<p><code>/usr/bin/ditto -c -k --keepParent &quot;$APP_PATH&quot; &quot;$ZIP_PATH&quot;</code></p>
-<p><code>xcrun altool --notarize-app --primary-bundle-id ${BUNDLE_IDENTIFIER} -u ${APP_ACCOUNT} -p ${APP_SPEC_PASSWD} --asc-provider &quot;${DEVELOPMENT_TEAM}&quot; --file ${ZIP_PATH}</code></p>
+<h3 id="Upload-the-App-archive"><a href="#Upload-the-App-archive" class="headerlink" title="Upload the App archive"></a>Upload the App archive</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">APP_PATH=<span class="string">"./<span class="variable">$&#123;PRODUCT_NAME&#125;</span>.app"</span></span><br><span class="line">ZIP_PATH=<span class="string">"./<span class="variable">$&#123;PRODUCT_NAME&#125;</span>.zip"</span></span><br><span class="line"></span><br><span class="line">/usr/bin/ditto -c -k --keepParent <span class="string">"<span class="variable">$APP_PATH</span>"</span> <span class="string">"<span class="variable">$ZIP_PATH</span>"</span></span><br><span class="line"></span><br><span class="line">xcrun altool --notarize-app --primary-bundle-id <span class="variable">$&#123;BUNDLE_IDENTIFIER&#125;</span> -u <span class="variable">$&#123;APP_ACCOUNT&#125;</span> -p <span class="variable">$&#123;APP_SPEC_PASSWD&#125;</span> --asc-provider <span class="string">"<span class="variable">$&#123;DEVELOPMENT_TEAM&#125;</span>"</span> --file <span class="variable">$&#123;ZIP_PATH&#125;</span></span><br></pre></td></tr></table></figure>
+
 <p>The <code>--asc-provider</code> parameter is needed for us as our App management account is being used by more than one orgnizations. Otherwise the <code>--notarize-app</code> command would fail with the following error prompt message. </p>
-<blockquote>
-<p>Error: Your Apple ID account is attached to other iTunes providers. You will need to specify which provider you intend to submit content to by using the -itc_provider command. Please contact us if you have questions or need help. (1627)</p>
-</blockquote>
-<blockquote>
-<p>However, we didn’t find how -itc_provider can be specified, but found the —asc-provider parameter. Maybe the prompt itself is a mistake.</p>
-</blockquote>
+<div class="note danger">
+            <p>Error: Your Apple ID account is attached to other iTunes providers. You will need to specify which provider you intend to submit content to by using the -itc_provider command. Please contact us if you have questions or need help. (1627)</p><p>However, we didn’t find how -itc_provider can be specified, but found the —asc-provider parameter. Maybe the prompt itself is a mistake.</p>
+          </div>
+
 <p>Apple’s official documentation states that the notarization could complete in about 1 hour. We found it usually complete in several minutes and we would receive the email notification shortly after we have had the archive uploaded.</p>
 <h3 id="Upload-the-installer-package"><a href="#Upload-the-installer-package" class="headerlink" title="Upload the installer package"></a>Upload the installer package</h3><p><code>xcrun altool --notarize-app --primary-bundle-id ${BUNDLE_IDENTIFIER} -u ${APP_ACCOUNT} -p ${APP_SPEC_PASSWD} --asc-provider &quot;${DEVELOPMENT_TEAM}&quot; --file ${WORKSPACE}/${RELEASE_PKG_NAME}</code></p>
 <blockquote>
@@ -473,8 +478,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/06/21/githubpages-aliyun-cdn/" rel="prev" title="使用阿里云 CDN 加速 GitHub Pages 网站">
-                使用阿里云 CDN 加速 GitHub Pages 网站 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/11/Fenced-Code-Block-Syntax-Highlight-with-Jekyll/" rel="prev" title="Fenced Code Block Syntax Highlight with Jekyll">
+                Fenced Code Block Syntax Highlight with Jekyll <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -548,7 +553,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -563,7 +568,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                    <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">分类</span>
                   
                 </div>
@@ -650,6 +657,32 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
 
 
 

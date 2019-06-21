@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="iOS App 发布准备申请 Apple 开发者账号申请 D-U-N-S 编号如果 App 需要在 App Store 上发布，那么建议申请 “以组织身份注册” 的类型。如果选择以组织身份注册，还需要先为您的企业或组织申请 D-U-N-S (邓白氏) 码，请按照 https://developer.apple.com/enroll/duns-lookup/ 的指引完成申请。如果企业资质健全，一般都">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS App 发布准备">
+<meta property="og:url" content="https://ibookit.beeuc.com/2019/06/22/preparation-for-iOS-App-Distribution/index.html">
+<meta property="og:site_name" content="iBookIt">
+<meta property="og:description" content="iOS App 发布准备申请 Apple 开发者账号申请 D-U-N-S 编号如果 App 需要在 App Store 上发布，那么建议申请 “以组织身份注册” 的类型。如果选择以组织身份注册，还需要先为您的企业或组织申请 D-U-N-S (邓白氏) 码，请按照 https://developer.apple.com/enroll/duns-lookup/ 的指引完成申请。如果企业资质健全，一般都">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ibookit.beeuc.com/images/duns-request.png">
+<meta property="og:image" content="https://ibookit.beeuc.com/images/ios-dev-register.png">
+<meta property="og:updated_time" content="2019-06-21T16:21:53.010Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS App 发布准备">
+<meta name="twitter:description" content="iOS App 发布准备申请 Apple 开发者账号申请 D-U-N-S 编号如果 App 需要在 App Store 上发布，那么建议申请 “以组织身份注册” 的类型。如果选择以组织身份注册，还需要先为您的企业或组织申请 D-U-N-S (邓白氏) 码，请按照 https://developer.apple.com/enroll/duns-lookup/ 的指引完成申请。如果企业资质健全，一般都">
+<meta name="twitter:image" content="https://ibookit.beeuc.com/images/duns-request.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://ibookit.beeuc.com/2019/06/22/preparation-for-iOS-App-Distribution/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>iOS App 发布准备 | iBookIt</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">iBookIt</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="https://github.com/beeuc-corp" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ibookit.beeuc.com/2019/06/22/preparation-for-iOS-App-Distribution/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="BEEUC">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iBookIt">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS App 发布准备
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-22 00:20:51 / 修改时间：00:21:53" itemprop="dateCreated datePublished" datetime="2019-06-22T00:20:51+08:00">2019-06-22</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="iOS-App-发布准备"><a href="#iOS-App-发布准备" class="headerlink" title="iOS App 发布准备"></a>iOS App 发布准备</h1><h2 id="申请-Apple-开发者账号"><a href="#申请-Apple-开发者账号" class="headerlink" title="申请 Apple 开发者账号"></a>申请 Apple 开发者账号</h2><h3 id="申请-D-U-N-S-编号"><a href="#申请-D-U-N-S-编号" class="headerlink" title="申请 D-U-N-S 编号"></a>申请 D-U-N-S 编号</h3><p>如果 App 需要在 App Store 上发布，那么建议申请 “以组织身份注册” 的类型。如果选择以组织身份注册，还需要先为您的企业或组织申请 D-U-N-S (邓白氏) 码，请按照 <a href="https://developer.apple.com/enroll/duns-lookup/" target="_blank" rel="noopener">https://developer.apple.com/enroll/duns-lookup/</a> 的指引完成申请。如果企业资质健全，一般都能申请成功，通常 D-U-N-S 的申请需要几天时间完成。</p>
+<div class="note info">
+            <p>注册 D-U-N-S 需要提供如下信息以及联系人信息</p>
+          </div>
+
+<p><img src="/images/duns-request.png" alt="duns-request"></p>
+<p>提交在线申请后，如果申请人是中国境内的组织实体，可能会收到 D &amp; B 的国内代理公司 (上海华夏邓白氏商业信息咨询有限公司) 发来的邮件，要求签署邮件附件中的确认知悉函，并提供以下信息</p>
+<ul>
+<li>公司清晰的营业执照正本（或副本）照片和公司公章刻字面的实物照片（如是事业单位请提供事业单位法人证）</li>
+<li>公司中文名称（工商注册的中文名，如有更名情况，请同时提供更名前和更名后的名称）、英文名（如无正式的英文名按字面翻译）</li>
+<li>中文办公地址、英文办公地址</li>
+<li>邮编</li>
+<li>企业类型</li>
+<li>是否是独立企业（公司有无分公司或办事处，只需填有或无）</li>
+<li>公司英文简称或英文商标（如果没有可以填无）</li>
+<li>主营业务（一个最主要的业务）</li>
+<li>员工人数（请尽量精确,例:10人；不要填区间,例：10-20人）</li>
+<li>本项目联系人（务必填写申请公司的本项目联系人），包括姓名、 性别、 职务和电话（公司座机和联系人手机，所提供座机和办公地址保持一致）</li>
+</ul>
+<h3 id="完成苹果开发者注册"><a href="#完成苹果开发者注册" class="headerlink" title="完成苹果开发者注册"></a>完成苹果开发者注册</h3><p>以组织身份注册苹果开发者，需要在获得 D-U-N-S 编号后，才可以继续完成注册，需要提供如下信息</p>
+<div class="note info">
+            <p>苹果开发者的注册地址是 <a href="https://developer.apple.com/programs/" target="_blank" rel="noopener">https://developer.apple.com/programs/</a>，网站上有详细的流程介绍。</p>
+          </div>
+
+<p><img src="/images/ios-dev-register.png" alt="ios-dev-register"></p>
+<div class="note info">
+            <p>开发者账号注册好之后，才可以进行后续步骤。</p>
+          </div>
+
+<h2 id="常用网站"><a href="#常用网站" class="headerlink" title="常用网站"></a>常用网站</h2><ul>
+<li>Apple 开发者网站 - <a href="https://developer.apple.com" target="_blank" rel="noopener">https://developer.apple.com</a>， 管理 App ID，签名证书，Provisioning Profile 等</li>
+<li>App Store Connect 网站 - <a href="https://appstoreconnect.apple.com" target="_blank" rel="noopener">https://appstoreconnect.apple.com</a>，管理 App，Test Flight 测试版本，用户等</li>
+<li>Apple ID 管理网站 - <a href="https://appleid.apple.com/cn" target="_blank" rel="noopener">https://appleid.apple.com/cn</a>，管理开发者的 Apple ID，需要在里边创建 App specific password，在上传 ipa 文件的命令中需要使用</li>
+</ul>
+<h2 id="创建-App-ID"><a href="#创建-App-ID" class="headerlink" title="创建 App ID"></a>创建 App ID</h2><p>在 <a href="https://developer.apple.com" target="_blank" rel="noopener">https://developer.apple.com</a> 网站为 App 创建一个 App ID，创建 App ID 是为了创建 Bundle ID （PRODUCT_BUNDLE_IDENTIFIER）。如果在 Xcode 工程中使用 xcconfig，则 release build 的 xcconfig 中可以设置 <code>PRODUCT_BUNDLE_IDENTIFIER = &quot;创建 App ID 时指定的 Bundle ID&quot;。</code></p>
+<h2 id="创建-iOS-Distribution-证书"><a href="#创建-iOS-Distribution-证书" class="headerlink" title="创建 iOS Distribution 证书"></a>创建 iOS Distribution 证书</h2><p>这个证书用于 Xcode 编译过程中为生成的 ipa 文件签名，如果还没有创建该证书，则可以使用 Xcode 创建该证书。创建的方法是进入到 Xcode &gt; Preferences &gt; Accounts &gt; Manage Certificates…, 点 + 号，选择 iOS Distribution。</p>
+<p>创建出来后，可以在主机的 Keychain Access 应用中将该证书导出为一个 .p12 文件备用，一般需要将这个证书再安装到编译服务器上去。 </p>
+<h2 id="创建-iOS-Provisioning-Profiles-Distribution"><a href="#创建-iOS-Provisioning-Profiles-Distribution" class="headerlink" title="创建 iOS Provisioning Profiles (Distribution)"></a>创建 iOS Provisioning Profiles (Distribution)</h2><p>在 <a href="https://developer.apple.com" target="_blank" rel="noopener">https://developer.apple.com</a> 网站为 App 创建一个 iOS Provisioning Profiles (Distribution)，这个文件也是在 Xcode 编译时使用。创建时，需要选择已经创建好的 App ID，以及 iOS Distribution 证书。创建好的 iOS Provisioning Profiles (Distribution) 文件可以下载下来，安装到编译服务器上。</p>
+<h2 id="配置-release-xcconfig-文件"><a href="#配置-release-xcconfig-文件" class="headerlink" title="配置 release xcconfig 文件"></a>配置 release xcconfig 文件</h2><p>建议在工程中使用 release xcconfig 文件，可以在该文件中配置好以下几项配置。在工程的 Build Settings 中将相应的属性设置为对应的参数。如将 Provisioning Profile &gt; Release 设置为 <code>${PROVISIONING_PROFILE_SPECIFIER}</code>，将 Packaging &gt; Product Bundle Identifier &gt; Release 设置为  <code>${PRODUCT_BUNDLE_IDENTIFIER}</code> 以此类推。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PRODUCT_BUNDLE_IDENTIFIER = 创建 App ID 时指定的 Bundle ID</span><br><span class="line">PRODUCT_NAME = 应用名字</span><br><span class="line">DEVELOPMENT_TEAM = 开发者 Team ID 号码，在 developer.apple.com 查看账号信息可以查到  </span><br><span class="line">CODE_SIGN_IDENTITY = 签名证书 ID，查看签名证书属性可以查到 </span><br><span class="line">PROVISIONING_PROFILE_SPECIFIER = iOS Provisioning Profiles (Distribution) 的名字</span><br></pre></td></tr></table></figure>
+
+<h2 id="在-App-Store-Connect-创建应用"><a href="#在-App-Store-Connect-创建应用" class="headerlink" title="在 App Store Connect 创建应用"></a>在 App Store Connect 创建应用</h2><p>在 App Store Connect 网站中创建一个新的 iOS App，创建应用时选择之前创建的 Bundle ID。只有创建 App 后才可以上传改应用的 ipa 文件。</p>
+<h2 id="编译-Release-版本应用-ipa-文件并将其上传到-App-Store-Connect"><a href="#编译-Release-版本应用-ipa-文件并将其上传到-App-Store-Connect" class="headerlink" title="编译 Release 版本应用 ipa 文件并将其上传到 App Store Connect"></a>编译 Release 版本应用 ipa 文件并将其上传到 App Store Connect</h2><p>建议在编译服务器通过命令行方式编译用于发布的 ipa 文件，然后通过命令行进行上传。可以使用 Jenkins 等 CI/CD 工具，将这一过程自动化。编译命令和上传命令示例如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xcodebuild -target $&#123;TARGET&#125; -configuration Release -project $&#123;PROJECT_FILE&#125;</span><br><span class="line">xcrun altool --upload-app -f ./release/$&#123;RELEASE_IPA_FILE&#125; -u $&#123;USER_APPLE_ID&#125; -p "$&#123;APP_SPECIFIC_PASSWORD&#125;"</span><br></pre></td></tr></table></figure>
+
+<div class="note info">
+            <p>苹果现在要求 altool 命令中不能再使用用户的登录密码，而需要使用 App Specific Password，这个密码需要在 Apple ID 管理网站中创建</p>
+          </div>
+
+<h2 id="通过-Test-Flight-安装-App-测试"><a href="#通过-Test-Flight-安装-App-测试" class="headerlink" title="通过 Test Flight 安装 App 测试"></a>通过 Test Flight 安装 App 测试</h2><p>Test Flight 是苹果推荐的 App 发布前的测试和 Beta 手段， ipa 上传到 App Store Connect 后，测试人员可以通过 Test Flight 安装新上传的 App，进行必要的测试。有关 Test Flight 的使用方法可以参考 <a href="https://developer.apple.com/testflight/" target="_blank" rel="noopener">https://developer.apple.com/testflight/</a></p>
+<h2 id="提交审核"><a href="#提交审核" class="headerlink" title="提交审核"></a>提交审核</h2><p>新版本应用通过测试后，可以将其提交审核。在 <a href="https://appstoreconnect.apple.com" target="_blank" rel="noopener">https://appstoreconnect.apple.com</a> 网站上提供必要的信息，然后提交审核即可。苹果一般几天后开始审核，如果审核成功，则 App 可以发布到 App Store。如果审核失败，苹果会提供反馈信息，说明审核失败的原因，需要根据反馈进行必要的修改或者同审核人员进行必要的沟通。可以参考苹果文档 <a href="https://help.apple.com/app-store-connect/#/dev34e9bbb5a" target="_blank" rel="noopener">https://help.apple.com/app-store-connect/#/dev34e9bbb5a</a> 查看更详细的说明。</p>
+<div class="note warning">
+            <p>苹果现在要求所有应用需要提供《隐私协议》链接，需要将准备好的《隐私协议》放到公司网站后，将地址链接填入 App 审核申请中对应的空格。</p><p>另外，有时苹果要求提供 App 使用的 Demo 视频，建议录制一个 Demo 视频，在申请表中提供视频的地址链接。</p>
+          </div>
+
+
+
+
+
+
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/21/githubpages-aliyun-cdn/" rel="next" title="使用阿里云 CDN 加速 GitHub Pages 网站">
+                <i class="fa fa-chevron-left"></i> 使用阿里云 CDN 加速 GitHub Pages 网站
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">BEEUC</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">分类</span>
+                  
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#iOS-App-发布准备"><span class="nav-number">1.</span> <span class="nav-text">iOS App 发布准备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#申请-Apple-开发者账号"><span class="nav-number">1.1.</span> <span class="nav-text">申请 Apple 开发者账号</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#申请-D-U-N-S-编号"><span class="nav-number">1.1.1.</span> <span class="nav-text">申请 D-U-N-S 编号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完成苹果开发者注册"><span class="nav-number">1.1.2.</span> <span class="nav-text">完成苹果开发者注册</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用网站"><span class="nav-number">1.2.</span> <span class="nav-text">常用网站</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建-App-ID"><span class="nav-number">1.3.</span> <span class="nav-text">创建 App ID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建-iOS-Distribution-证书"><span class="nav-number">1.4.</span> <span class="nav-text">创建 iOS Distribution 证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建-iOS-Provisioning-Profiles-Distribution"><span class="nav-number">1.5.</span> <span class="nav-text">创建 iOS Provisioning Profiles (Distribution)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-release-xcconfig-文件"><span class="nav-number">1.6.</span> <span class="nav-text">配置 release xcconfig 文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在-App-Store-Connect-创建应用"><span class="nav-number">1.7.</span> <span class="nav-text">在 App Store Connect 创建应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译-Release-版本应用-ipa-文件并将其上传到-App-Store-Connect"><span class="nav-number">1.8.</span> <span class="nav-text">编译 Release 版本应用 ipa 文件并将其上传到 App Store Connect</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过-Test-Flight-安装-App-测试"><span class="nav-number">1.9.</span> <span class="nav-text">通过 Test Flight 安装 App 测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提交审核"><span class="nav-number">1.10.</span> <span class="nav-text">提交审核</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BEEUC</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.2</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'b37e8eff101915c2025e',
+    clientSecret: '946d152cc339fdf90b301debf790e0c7ff22208c',
+    repo: 'ibookit-comment',
+    owner: 'ibookit',
+    admin: ['beeuc'],
+    id: md5(location.pathname),
+    
+      language: 'zh-CN',
+    
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
