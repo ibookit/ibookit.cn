@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="直播系统微信集成方案实现微信集成功能的目的 用户身份识别 用户在微信中打开播放页面时，可以获取用户名和头像等信息 可以记录全部观看用户的用户名作为统计信息 可以用作评论功能中的评论者名和头像 直播签到 - 微信内打开观看页面，点击直播签到，输入名字等信息，每个输入与输入时使用的微信号相对应，提高签到有效性     微信用户绑定 当直播系统支持用户系统时，可以支持微信用户和系统用户绑定，从而支持微信">
+<meta name="keywords" content="直播, 微信">
+<meta property="og:type" content="article">
+<meta property="og:title" content="直播系统微信集成方案">
+<meta property="og:url" content="https://ibookit.beeuc.com/2019/06/23/live-video-and-wechat-integration/index.html">
+<meta property="og:site_name" content="iBookIt">
+<meta property="og:description" content="直播系统微信集成方案实现微信集成功能的目的 用户身份识别 用户在微信中打开播放页面时，可以获取用户名和头像等信息 可以记录全部观看用户的用户名作为统计信息 可以用作评论功能中的评论者名和头像 直播签到 - 微信内打开观看页面，点击直播签到，输入名字等信息，每个输入与输入时使用的微信号相对应，提高签到有效性     微信用户绑定 当直播系统支持用户系统时，可以支持微信用户和系统用户绑定，从而支持微信">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ibookit.beeuc.com/images/wechat-user-oauth.png">
+<meta property="og:image" content="https://ibookit.beeuc.com/images/wechat-user-comments.png">
+<meta property="og:image" content="https://ibookit.beeuc.com/images/wechat-user-register.png">
+<meta property="og:image" content="https://ibookit.beeuc.com/images/wechat-access-token.png">
+<meta property="og:updated_time" content="2019-06-23T15:09:48.183Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="直播系统微信集成方案">
+<meta name="twitter:description" content="直播系统微信集成方案实现微信集成功能的目的 用户身份识别 用户在微信中打开播放页面时，可以获取用户名和头像等信息 可以记录全部观看用户的用户名作为统计信息 可以用作评论功能中的评论者名和头像 直播签到 - 微信内打开观看页面，点击直播签到，输入名字等信息，每个输入与输入时使用的微信号相对应，提高签到有效性     微信用户绑定 当直播系统支持用户系统时，可以支持微信用户和系统用户绑定，从而支持微信">
+<meta name="twitter:image" content="https://ibookit.beeuc.com/images/wechat-user-oauth.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://ibookit.beeuc.com/2019/06/23/live-video-and-wechat-integration/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>直播系统微信集成方案 | iBookIt</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1d135936206fa682784515c37618ae6f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">iBookIt</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="http://github.com/beeuc-corp" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ibookit.beeuc.com/2019/06/23/live-video-and-wechat-integration/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="BEEUC">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iBookIt">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">直播系统微信集成方案
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-23 22:38:04 / 修改时间：23:09:48" itemprop="dateCreated datePublished" datetime="2019-06-23T22:38:04+08:00">2019-06-23</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/架构方案/" itemprop="url" rel="index"><span itemprop="name">架构方案</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="直播系统微信集成方案"><a href="#直播系统微信集成方案" class="headerlink" title="直播系统微信集成方案"></a>直播系统微信集成方案</h1><h2 id="实现微信集成功能的目的"><a href="#实现微信集成功能的目的" class="headerlink" title="实现微信集成功能的目的"></a>实现微信集成功能的目的</h2><ul>
+<li>用户身份识别<ul>
+<li>用户在微信中打开播放页面时，可以获取用户名和头像等信息<ul>
+<li>可以记录全部观看用户的用户名作为统计信息</li>
+<li>可以用作评论功能中的评论者名和头像</li>
+<li>直播签到 - 微信内打开观看页面，点击直播签到，输入名字等信息，每个输入与输入时使用的微信号相对应，提高签到有效性</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>微信用户绑定</li>
+<li>当直播系统支持用户系统时，可以支持微信用户和系统用户绑定，从而支持微信登录功能</li>
+<li>付费观看</li>
+<li>如果直播系统支持付费观看功能，用户可以使用微信支付</li>
+</ul>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul>
+<li><p>注册微信公众平台或微信开放平台并通过微信开发者资质认证</p>
+<ul>
+<li>如果注册微信公众平台，需要选择服务号，而不能选择订阅号，因为订阅号不能使用用户信息获取等接口</li>
+<li>以下是申请微信开放平台的要求，申请公众平台的要求也类似</li>
+<li>如果有多个网站应用或移动应用需要集成，或者需要支持 PC 端微信扫码登录功能，则应该使用开放平台，因为公众平台只能设置一个回调域名。开放平台可以创建多个网站应用，每个应用可以设置一个回调域名</li>
+</ul>
+</li>
+<li><p>微信开放平台注册并开通开发者资质认证</p>
+<ul>
+<li><a href="https://open.weixin.qq.com" target="_blank" rel="noopener">https://open.weixin.qq.com</a> </li>
+<li>开发者资质认证每年费用为300rmb</li>
+<li>需要填写并上传《企业微信开放平台认证申请信息表》（申请表需要公司盖章）</li>
+</ul>
+</li>
+<li><p>在微信开放平台创建一个网站应用</p>
+<ul>
+<li>需要为基成的网站做 ICP 备案</li>
+<li>需要填写并上传《微信开放平台网站信息登记表》（登记表需要公司盖章）</li>
+<li>设置网站授权回调域为需要集成的网站应用URL，即完成微信登录确认后跳转回的URL</li>
+<li>创建成功后，记录网站应用的 AppId 和 App Secret</li>
+</ul>
+</li>
+</ul>
+<h2 id="功能示例"><a href="#功能示例" class="headerlink" title="功能示例"></a>功能示例</h2><h3 id="登录确认，用于获取观众微信身份信息"><a href="#登录确认，用于获取观众微信身份信息" class="headerlink" title="登录确认，用于获取观众微信身份信息"></a>登录确认，用于获取观众微信身份信息</h3><p><img src="/images/wechat-user-oauth.png" alt="image-20190623224616078"></p>
+<ul>
+<li>创建直播活动时，可以设置是否要求观众观看时微信登录</li>
+<li>如果设置了微信登录，则用户在微信内打开活动地址时，会出现如上图的微信授权页面</li>
+<li>用户点击确认登录后，页面调转到直播活动页面</li>
+<li>微信用户名和头像等信息可以被用在评论功能中作为用户标识</li>
+</ul>
+<p><img src="/images/wechat-user-comments.png" alt="image-20190623224858225"></p>
+<h3 id="直播签到功能"><a href="#直播签到功能" class="headerlink" title="直播签到功能"></a>直播签到功能</h3><ul>
+<li>系统可以记录用户的微信用户名，输入的真实姓名和手机号码，以及签到的时间作为记录</li>
+</ul>
+<p><img src="/images/wechat-user-register.png" alt="image-20190623225030426"></p>
+<h2 id="功能实现"><a href="#功能实现" class="headerlink" title="功能实现"></a>功能实现</h2><h3 id="微信端登录"><a href="#微信端登录" class="headerlink" title="微信端登录"></a>微信端登录</h3><ul>
+<li>微信端打开直播活动页面链接时，首先跳转到微信授权页面</li>
+<li>微信授权页面<ul>
+<li>详细说明可参考 <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842" target="_blank" rel="noopener">https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421140842</a> </li>
+<li>用户点击确认后跳转回活动页面</li>
+<li>示例链接 <ul>
+<li><a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx34e905b73b8xxcbb&redirect_uri=http%3A%2F%2Flive.example.com/admin-app&response_type=code&scope=snsapi_userinfo&state=hello#wechat_redirect" target="_blank" rel="noopener">https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx34e905b73b8xxcbb&amp;redirect_uri=http%3A%2F%2Flive.example.com/admin-app&amp;response_type=code&amp;scope=snsapi_userinfo&amp;state=hello#wechat_redirect</a>       </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>跳转回活动页面后，活动页面继续与微信平台完成获取 access token 和获取微信用户名、头像等交互</li>
+<li>微信回调到服务器的 URL 形式为：<br> <a href="http://live.example.com/admin-app/?code=081u6AzT0gpuqX1CRXzT0DOHzT0u6AzT&amp;state=#/main/login" target="_blank" rel="noopener">http://live.example.com/admin-app/?code=081u6AzT0gpuqX1CRXzT0DOHzT0u6AzT&amp;state=#/main/login</a></li>
+</ul>
+<h3 id="PC-端登录"><a href="#PC-端登录" class="headerlink" title="PC 端登录"></a>PC 端登录</h3><ul>
+<li>如果用户使用 PC 客户端时，也可以要求用户使用微信扫描二维码登录。</li>
+</ul>
+<div class="note info">
+            <p>具体可以参考<br><a href="https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=open1419316505&token=&lang=zh_CN" target="_blank" rel="noopener">https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&amp;t=resource/res_list&amp;verify=1&amp;id=open1419316505&amp;token=&amp;lang=zh_CN</a> </p>
+          </div>
+
+<ul>
+<li>其它过程与微信端处理一致</li>
+</ul>
+<div class="note warning">
+            <p>注意： 支持微信扫码登录，需要注册微信开放平台</p>
+          </div>
+
+<h3 id="获取微信平台access-token"><a href="#获取微信平台access-token" class="headerlink" title="获取微信平台access_token"></a>获取微信平台access_token</h3><ul>
+<li>在使用其它API前需要首先获得 Access Token</li>
+</ul>
+<p><img src="/images/wechat-access-token.png" alt="image-20190623225705243"></p>
+<h3 id="获取用户名和头像"><a href="#获取用户名和头像" class="headerlink" title="获取用户名和头像"></a>获取用户名和头像</h3><ul>
+<li>API<ul>
+<li><a href="https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&amp;openid=OPENID" target="_blank" rel="noopener">https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&amp;openid=OPENID</a></li>
+<li>返回结果<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">	“openid”:"OPENID",</span><br><span class="line">	“nickname":"NICKNAME",</span><br><span class="line">	“sex":1,</span><br><span class="line">	“province":"PROVINCE",</span><br><span class="line">	“city":"CITY",</span><br><span class="line">	“country":"COUNTRY",</span><br><span class="line">	"headimgurl": “http://wx.qlogo.cn/mmopen/g3MonUZtNHkdmzicIlibx6iaFqAc56vxLSUfpb6n5WKSYVY0ChQKkiaJSgQ1dZuTOgvLLrhJbERQQ4eMsv84eavHiaiceqxibJxCfHe/0",</span><br><span class="line">	"privilege":["PRIVILEGE1", “PRIVILEGE2"],</span><br><span class="line">	"unionid": " o6_bmasdasdsad6_2sgVt7hMZOPfL”</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421140842" target="_blank" rel="noopener">https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421140842</a> </li>
+<li><a href="https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&amp;t=resource/res_list&amp;verify=1&amp;id=open1419316505&amp;token=&amp;lang=zh_CN" target="_blank" rel="noopener">https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&amp;t=resource/res_list&amp;verify=1&amp;id=open1419316505&amp;token=&amp;lang=zh_CN</a></li>
+<li><a href="https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&amp;t=resource/res_list&amp;verify=1&amp;id=open1419316518&amp;lang=zh_CN" target="_blank" rel="noopener">https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&amp;t=resource/res_list&amp;verify=1&amp;id=open1419316518&amp;lang=zh_CN</a></li>
+<li><a href="http://www.yunxi.tv/site/case" target="_blank" rel="noopener">http://www.yunxi.tv/site/case</a> 相似用户体验</li>
+<li><a href="http://docs.easemob.com/im/400webimintegration/10webimintro" target="_blank" rel="noopener">http://docs.easemob.com/im/400webimintegration/10webimintro</a> 环信Web IM SDK 文档</li>
+<li><a href="https://www.npmjs.com/package/wechat-oauth" target="_blank" rel="noopener">https://www.npmjs.com/package/wechat-oauth</a>  nodejs wechat-oauth</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/直播-微信/" rel="tag"># 直播, 微信</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/23/The-unix-time-sharing-system-Den-and-Ken-in-ACM/" rel="next" title="The Unix Time-Sharing System">
+                <i class="fa fa-chevron-left"></i> The Unix Time-Sharing System
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">BEEUC</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/beeuc-corp" title="GitHub &rarr; https://github.com/beeuc-corp" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:info@beeuc.com" title="E-Mail &rarr; mailto:info@beeuc.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#直播系统微信集成方案"><span class="nav-number">1.</span> <span class="nav-text">直播系统微信集成方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实现微信集成功能的目的"><span class="nav-number">1.1.</span> <span class="nav-text">实现微信集成功能的目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">1.2.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#功能示例"><span class="nav-number">1.3.</span> <span class="nav-text">功能示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#登录确认，用于获取观众微信身份信息"><span class="nav-number">1.3.1.</span> <span class="nav-text">登录确认，用于获取观众微信身份信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直播签到功能"><span class="nav-number">1.3.2.</span> <span class="nav-text">直播签到功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#功能实现"><span class="nav-number">1.4.</span> <span class="nav-text">功能实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#微信端登录"><span class="nav-number">1.4.1.</span> <span class="nav-text">微信端登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PC-端登录"><span class="nav-number">1.4.2.</span> <span class="nav-text">PC 端登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取微信平台access-token"><span class="nav-number">1.4.3.</span> <span class="nav-text">获取微信平台access_token</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取用户名和头像"><span class="nav-number">1.4.4.</span> <span class="nav-text">获取用户名和头像</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.5.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BEEUC</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'b37e8eff101915c2025e',
+    clientSecret: '946d152cc339fdf90b301debf790e0c7ff22208c',
+    repo: 'ibookit-comment',
+    owner: 'ibookit',
+    admin: ['beeuc'],
+    id: md5(location.pathname),
+    
+      language: 'zh-CN',
+    
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+<script>
+if ($('body').find('div.pdf').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      $('body').find('div.pdf').each(function(i, o) {
+        PDFObject.embed($(o).attr('target'), $(o), {
+          pdfOpenParams: {
+            navpanes: 0,
+            toolbar: 0,
+            statusbar: 0,
+            pagemode: 'thumbs',
+            view: 'FitH'
+          },
+          PDFJS_URL: '/lib/pdf/web/viewer.html',
+          height: $(o).attr('height') || '500px'
+        });
+      });
+    },
+  });
+}
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

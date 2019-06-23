@@ -243,6 +243,23 @@
         
         
           
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
           <li class="menu-item menu-item-tags">
 
     
@@ -330,6 +347,266 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ibookit.beeuc.com/2019/06/23/live-video-and-wechat-integration/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="BEEUC">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iBookIt">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/23/live-video-and-wechat-integration/" class="post-title-link" itemprop="url">直播系统微信集成方案</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-23 22:38:04 / 修改时间：23:09:48" itemprop="dateCreated datePublished" datetime="2019-06-23T22:38:04+08:00">2019-06-23</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/架构方案/" itemprop="url" rel="index"><span itemprop="name">架构方案</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="直播系统微信集成方案"><a href="#直播系统微信集成方案" class="headerlink" title="直播系统微信集成方案"></a>直播系统微信集成方案</h1><h2 id="实现微信集成功能的目的"><a href="#实现微信集成功能的目的" class="headerlink" title="实现微信集成功能的目的"></a>实现微信集成功能的目的</h2><ul>
+<li>用户身份识别<ul>
+<li>用户在微信中打开播放页面时，可以获取用户名和头像等信息<ul>
+<li>可以记录全部观看用户的用户名作为统计信息</li>
+<li>可以用作评论功能中的评论者名和头像</li>
+<li>直播签到 - 微信内打开观看页面，点击直播签到，输入名字等信息，每个输入与输入时使用的微信号相对应，提高签到有效性</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>微信用户绑定</li>
+<li>当直播系统支持用户系统时，可以支持微信用户和系统用户绑定，从而支持微信登录功能</li>
+<li>付费观看</li>
+<li>如果直播系统支持付费观看功能，用户可以使用微信支付</li>
+</ul>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul>
+<li><p>注册微信公众平台或微信开放平台并通过微信开发者资质认证</p>
+<ul>
+<li>如果注册微信公众平台，需要选择服务号，而不能选择订阅号，因为订阅号不能使用用户信息获取等接口</li>
+<li>以下是申请微信开放平台的要求，申请公众平台的要求也类似</li>
+<li>如果有多个网站应用或移动应用需要集成，或者需要支持 PC 端微信扫码登录功能，则应该使用开放平台，因为公众平台只能设置一个回调域名。开放平台可以创建多个网站应用，每个应用可以设置一个回调域名</li>
+</ul>
+</li>
+<li><p>微信开放平台注册并开通开发者资质认证</p>
+<ul>
+<li><a href="https://open.weixin.qq.com" target="_blank" rel="noopener">https://open.weixin.qq.com</a> </li>
+<li>开发者资质认证每年费用为300rmb</li>
+<li>需要填写并上传《企业微信开放平台认证申请信息表》（申请表需要公司盖章）</li>
+</ul>
+</li>
+<li><p>在微信开放平台创建一个网站应用</p>
+<ul>
+<li>需要为基成的网站做 ICP 备案</li>
+<li>需要填写并上传《微信开放平台网站信息登记表》（登记表需要公司盖章）</li>
+<li>设置网站授权回调域为需要集成的网站应用URL，即完成微信登录确认后跳转回的URL</li>
+<li>创建成功后，记录网站应用的 AppId 和 App Secret</li>
+</ul>
+</li>
+</ul>
+<h2 id="功能示例"><a href="#功能示例" class="headerlink" title="功能示例"></a>功能示例</h2><h3 id="登录确认，用于获取观众微信身份信息"><a href="#登录确认，用于获取观众微信身份信息" class="headerlink" title="登录确认，用于获取观众微信身份信息"></a>登录确认，用于获取观众微信身份信息</h3><p><img src="/images/wechat-user-oauth.png" alt="image-20190623224616078"></p>
+<ul>
+<li>创建直播活动时，可以设置是否要求观众观看时微信登录</li>
+<li>如果设置了微信登录，则用户在微信内打开活动地址时，会出现如上图的微信授权页面</li>
+<li>用户点击确认登录后，页面调转到直播活动页面</li>
+<li>微信用户名和头像等信息可以被用在评论功能中作为用户标识</li>
+</ul>
+<p><img src="/images/wechat-user-comments.png" alt="image-20190623224858225"></p>
+<h3 id="直播签到功能"><a href="#直播签到功能" class="headerlink" title="直播签到功能"></a>直播签到功能</h3><ul>
+<li>系统可以记录用户的微信用户名，输入的真实姓名和手机号码，以及签到的时间作为记录</li>
+</ul>
+<p><img src="/images/wechat-user-register.png" alt="image-20190623225030426"></p>
+<h2 id="功能实现"><a href="#功能实现" class="headerlink" title="功能实现"></a>功能实现</h2><h3 id="微信端登录"><a href="#微信端登录" class="headerlink" title="微信端登录"></a>微信端登录</h3><ul>
+<li>微信端打开直播活动页面链接时，首先跳转到微信授权页面</li>
+<li>微信授权页面<ul>
+<li>详细说明可参考 <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842" target="_blank" rel="noopener">https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421140842</a> </li>
+<li>用户点击确认后跳转回活动页面</li>
+<li>示例链接 <ul>
+<li><a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx34e905b73b8xxcbb&redirect_uri=http%3A%2F%2Flive.example.com/admin-app&response_type=code&scope=snsapi_userinfo&state=hello#wechat_redirect" target="_blank" rel="noopener">https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx34e905b73b8xxcbb&amp;redirect_uri=http%3A%2F%2Flive.example.com/admin-app&amp;response_type=code&amp;scope=snsapi_userinfo&amp;state=hello#wechat_redirect</a>       </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>跳转回活动页面后，活动页面继续与微信平台完成获取 access token 和获取微信用户名、头像等交互</li>
+<li>微信回调到服务器的 URL 形式为：<br> <a href="http://live.example.com/admin-app/?code=081u6AzT0gpuqX1CRXzT0DOHzT0u6AzT&amp;state=#/main/login" target="_blank" rel="noopener">http://live.example.com/admin-app/?code=081u6AzT0gpuqX1CRXzT0DOHzT0u6AzT&amp;state=#/main/login</a></li>
+</ul>
+<h3 id="PC-端登录"><a href="#PC-端登录" class="headerlink" title="PC 端登录"></a>PC 端登录</h3><ul>
+<li>如果用户使用 PC 客户端时，也可以要求用户使用微信扫描二维码登录。</li>
+</ul>
+<div class="note info">
+            <p>具体可以参考<br><a href="https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=open1419316505&token=&lang=zh_CN" target="_blank" rel="noopener">https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&amp;t=resource/res_list&amp;verify=1&amp;id=open1419316505&amp;token=&amp;lang=zh_CN</a> </p>
+          </div>
+
+<ul>
+<li>其它过程与微信端处理一致</li>
+</ul>
+<div class="note warning">
+            <p>注意： 支持微信扫码登录，需要注册微信开放平台</p>
+          </div>
+
+<h3 id="获取微信平台access-token"><a href="#获取微信平台access-token" class="headerlink" title="获取微信平台access_token"></a>获取微信平台access_token</h3><ul>
+<li>在使用其它API前需要首先获得 Access Token</li>
+</ul>
+<p><img src="/images/wechat-access-token.png" alt="image-20190623225705243"></p>
+<h3 id="获取用户名和头像"><a href="#获取用户名和头像" class="headerlink" title="获取用户名和头像"></a>获取用户名和头像</h3><ul>
+<li>API<ul>
+<li><a href="https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&amp;openid=OPENID" target="_blank" rel="noopener">https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&amp;openid=OPENID</a></li>
+<li>返回结果<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">	“openid”:"OPENID",</span><br><span class="line">	“nickname":"NICKNAME",</span><br><span class="line">	“sex":1,</span><br><span class="line">	“province":"PROVINCE",</span><br><span class="line">	“city":"CITY",</span><br><span class="line">	“country":"COUNTRY",</span><br><span class="line">	"headimgurl": “http://wx.qlogo.cn/mmopen/g3MonUZtNHkdmzicIlibx6iaFqAc56vxLSUfpb6n5WKSYVY0ChQKkiaJSgQ1dZuTOgvLLrhJbERQQ4eMsv84eavHiaiceqxibJxCfHe/0",</span><br><span class="line">	"privilege":["PRIVILEGE1", “PRIVILEGE2"],</span><br><span class="line">	"unionid": " o6_bmasdasdsad6_2sgVt7hMZOPfL”</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421140842" target="_blank" rel="noopener">https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421140842</a> </li>
+<li><a href="https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&amp;t=resource/res_list&amp;verify=1&amp;id=open1419316505&amp;token=&amp;lang=zh_CN" target="_blank" rel="noopener">https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&amp;t=resource/res_list&amp;verify=1&amp;id=open1419316505&amp;token=&amp;lang=zh_CN</a></li>
+<li><a href="https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&amp;t=resource/res_list&amp;verify=1&amp;id=open1419316518&amp;lang=zh_CN" target="_blank" rel="noopener">https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&amp;t=resource/res_list&amp;verify=1&amp;id=open1419316518&amp;lang=zh_CN</a></li>
+<li><a href="http://www.yunxi.tv/site/case" target="_blank" rel="noopener">http://www.yunxi.tv/site/case</a> 相似用户体验</li>
+<li><a href="http://docs.easemob.com/im/400webimintegration/10webimintro" target="_blank" rel="noopener">http://docs.easemob.com/im/400webimintegration/10webimintro</a> 环信Web IM SDK 文档</li>
+<li><a href="https://www.npmjs.com/package/wechat-oauth" target="_blank" rel="noopener">https://www.npmjs.com/package/wechat-oauth</a>  nodejs wechat-oauth</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1698,7 +1975,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1721,7 +1998,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                      
+                    
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1750,7 +2029,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
