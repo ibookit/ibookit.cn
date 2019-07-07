@@ -109,13 +109,13 @@
 <meta name="keywords" content="NVIDIA,Jetson Nano,OpenCV,Deep Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NVIDIA Jetson Nano Developer Kit 新手入门 (1)">
-<meta property="og:url" content="https://ibookit.beeuc.com/2019/07/07/NVIDIA-Jetson-Nano-Developer-Kit/index.html">
+<meta property="og:url" content="https://ibookit.beeuc.com/2019/07/07/NVIDIA-Jetson-Nano-Developer-Kit-GSG-1/index.html">
 <meta property="og:site_name" content="iBookIt">
 <meta property="og:description" content="NVIDIA Jetson Nano Developer Kit 新手入门 (1)本文总结为 NVIDIA Jetson Nano Developer Kit 准备基础系统环境的过程，包括  准备系统 SD 卡 调整 apt 源，更新系统和安装必要软件 配置 Python 开发 安装 TensorFlow   参考文档 NVIDIA Jetson Nano Developer Kit, Intro">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ibookit.beeuc.com/images/jetson-nano-sd-card-slot.png">
 <meta property="og:image" content="https://ibookit.beeuc.com/images/jetson-nano-1st-boot.png">
-<meta property="og:updated_time" content="2019-07-07T15:16:19.234Z">
+<meta property="og:updated_time" content="2019-07-07T15:24:01.722Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NVIDIA Jetson Nano Developer Kit 新手入门 (1)">
 <meta name="twitter:description" content="NVIDIA Jetson Nano Developer Kit 新手入门 (1)本文总结为 NVIDIA Jetson Nano Developer Kit 准备基础系统环境的过程，包括  准备系统 SD 卡 调整 apt 源，更新系统和安装必要软件 配置 Python 开发 安装 TensorFlow   参考文档 NVIDIA Jetson Nano Developer Kit, Intro">
@@ -127,7 +127,7 @@
 
   
   
-  <link rel="canonical" href="https://ibookit.beeuc.com/2019/07/07/NVIDIA-Jetson-Nano-Developer-Kit/">
+  <link rel="canonical" href="https://ibookit.beeuc.com/2019/07/07/NVIDIA-Jetson-Nano-Developer-Kit-GSG-1/">
 
 
 
@@ -370,7 +370,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ibookit.beeuc.com/2019/07/07/NVIDIA-Jetson-Nano-Developer-Kit/">
+    <link itemprop="mainEntityOfPage" href="https://ibookit.beeuc.com/2019/07/07/NVIDIA-Jetson-Nano-Developer-Kit-GSG-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="BEEUC">
@@ -413,7 +413,7 @@
                 
               
 
-              <time title="创建时间：2019-07-07 22:00:55 / 修改时间：23:16:19" itemprop="dateCreated datePublished" datetime="2019-07-07T22:00:55+08:00">2019-07-07</time>
+              <time title="创建时间：2019-07-07 22:00:55 / 修改时间：23:24:01" itemprop="dateCreated datePublished" datetime="2019-07-07T22:00:55+08:00">2019-07-07</time>
             
 
             
@@ -497,11 +497,11 @@
 <li>鼠标、键盘 1 套</li>
 </ul>
 <h2 id="准备系统-SD-卡"><a href="#准备系统-SD-卡" class="headerlink" title="准备系统 SD 卡"></a>准备系统 SD 卡</h2><ul>
-<li>参考 Getting Staerted with NVIDIA Jetson Nano Developer Kit， 下载 Jetson Nano Developer Kit SD card  image，大约 6G，准备烧写 SD 卡</li>
+<li>参考 Getting Staerted with NVIDIA Jetson Nano Developer Kit， 下载 Jetson Nano Developer Kit SD card  image，大小约 6G</li>
 <li>参考 Getting Staerted with NVIDIA Jetson Nano Developer Kit 将 image 烧写到 SD 卡。因为后边需要安装的软件比较多，建议使用 32G 的 SD 卡。我是在 mac 上使用 dd 命令烧写，可能是读卡器比较慢，用了很长时间才写完 （image 大小约 12G） (消耗 20+ 分钟)</li>
 </ul>
 <ul>
-<li>找到 Jetson Nano 上的 SD 卡槽，插入 SD 卡，卡槽的位置不太好找，如下图所示</li>
+<li>找到 Jetson Nano 上的 SD 卡槽，插入 SD 卡，卡槽的位置不太好找，在散热片下边，具体位置如下图所示</li>
 </ul>
 <p><img src="/images/jetson-nano-sd-card-slot.png" alt="SD Card Slot"></p>
 <ul>
@@ -534,7 +534,7 @@
 <li>安装 Python 虚拟环境 (Python virtual environments)</li>
 </ul>
 <div class="note info">
-            <p>使用Python 虚拟环境的好处是不同开发项目使用各自独立的环境，互不干扰</p>
+            <p>使用 Python 虚拟环境的好处是不同开发项目可以使用各自独立的环境，互不干扰</p>
           </div>
 
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pip install virtualenv virtualenvwrapper</span><br></pre></td></tr></table></figure>
