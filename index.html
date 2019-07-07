@@ -363,6 +363,254 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ibookit.beeuc.com/2019/07/07/NVIDIA-Jetson-Nano-Developer-Kit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="BEEUC">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/BEEUC-Logo-500x.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iBookIt">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/07/NVIDIA-Jetson-Nano-Developer-Kit/" class="post-title-link" itemprop="url">NVIDIA Jetson Nano Developer Kit 新手入门 (1)</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-07 22:00:55 / 修改时间：23:16:19" itemprop="dateCreated datePublished" datetime="2019-07-07T22:00:55+08:00">2019-07-07</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="NVIDIA-Jetson-Nano-Developer-Kit-新手入门-1"><a href="#NVIDIA-Jetson-Nano-Developer-Kit-新手入门-1" class="headerlink" title="NVIDIA Jetson Nano Developer Kit 新手入门 (1)"></a>NVIDIA Jetson Nano Developer Kit 新手入门 (1)</h1><p>本文总结为 NVIDIA Jetson Nano Developer Kit 准备基础系统环境的过程，包括</p>
+<ul>
+<li>准备系统 SD 卡</li>
+<li>调整 apt 源，更新系统和安装必要软件</li>
+<li>配置 Python 开发</li>
+<li>安装 TensorFlow </li>
+</ul>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
+<li><a href="https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit" target="_blank" rel="noopener">NVIDIA Jetson Nano Developer Kit, Introduciton</a>  </li>
+<li><a href="https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit" target="_blank" rel="noopener">Getting Staerted with NVIDIA Jetson Nano Developer Kit</a> </li>
+<li><a href="https://www.pyimagesearch.com/2019/05/06/getting-started-with-the-nvidia-jetson-nano/" target="_blank" rel="noopener">Getting started with the NVIDIA Jetson Nano @ pyimagesearch</a> </li>
+</ul>
+<h2 id="所需材料"><a href="#所需材料" class="headerlink" title="所需材料"></a>所需材料</h2><ul>
+<li>1 个 NVIDIA Jetson Nano Developer Kit</li>
+<li>1 个 Micro SD 卡，推荐大小至少为 32G</li>
+<li>1 个  5V 2.5A Micro USB 接口电源适配器</li>
+<li>网线 1 根</li>
+<li>鼠标、键盘 1 套</li>
+</ul>
+<h2 id="准备系统-SD-卡"><a href="#准备系统-SD-卡" class="headerlink" title="准备系统 SD 卡"></a>准备系统 SD 卡</h2><ul>
+<li>参考 Getting Staerted with NVIDIA Jetson Nano Developer Kit， 下载 Jetson Nano Developer Kit SD card  image，大约 6G，准备烧写 SD 卡</li>
+<li>参考 Getting Staerted with NVIDIA Jetson Nano Developer Kit 将 image 烧写到 SD 卡。因为后边需要安装的软件比较多，建议使用 32G 的 SD 卡。我是在 mac 上使用 dd 命令烧写，可能是读卡器比较慢，用了很长时间才写完 （image 大小约 12G） (消耗 20+ 分钟)</li>
+</ul>
+<ul>
+<li>找到 Jetson Nano 上的 SD 卡槽，插入 SD 卡，卡槽的位置不太好找，如下图所示</li>
+</ul>
+<p><img src="/images/jetson-nano-sd-card-slot.png" alt="SD Card Slot"></p>
+<ul>
+<li>插卡，网线，鼠标，键盘，电源线，启动</li>
+<li>启动后进入系统</li>
+</ul>
+<p><img src="/images/jetson-nano-1st-boot.png" alt="1st Boot"></p>
+<ul>
+<li>我使用的 SD 卡大小是 64G，df -h 显示根分区共 59G，剩余 47G</li>
+</ul>
+<h2 id="安装系统软件"><a href="#安装系统软件" class="headerlink" title="安装系统软件"></a>安装系统软件</h2><ul>
+<li><p>接下来准备更新系统和安装其他系统软件</p>
+</li>
+<li><p>由于访问 Ubuntu 默认 apt 源可能比较慢，或者根本访问不了，需要将 apt 源换成清华镜像，以下是修改 apt 源的方法。</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vi /etc/apt/sources.list</span><br><span class="line"><span class="comment"># 将 https://ports.ubuntu.com/ 替换为 http://mirrors.tuna.tsinghua.edu.cn</span></span><br><span class="line"><span class="comment"># 执行 apt-get update &amp;&amp; apt-get upgrade -y 试试效果</span></span><br><span class="line">$ apt-get update &amp;&amp; apt-get upgrade -y</span><br><span class="line"><span class="comment"># 需要大约 10+ 分钟</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>改变 apt 源后，参考 <a href="https://www.pyimagesearch.com/2019/05/06/getting-started-with-the-nvidia-jetson-nano/" target="_blank" rel="noopener">Getting started with the NVIDIA Jetson Nano @ pyimagesearch</a> 安装几个工具软件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install git cmake</span><br><span class="line">$ sudo apt-get install libatlas-base-dev gfortran</span><br><span class="line">$ sudo apt-get install libhdf5-serial-dev hdf5-tools</span><br><span class="line">$ sudo apt-get install python3-dev</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置-Python-开发环境"><a href="#配置-Python-开发环境" class="headerlink" title="配置 Python 开发环境"></a>配置 Python 开发环境</h2><ul>
+<li>首先安装 Python Package Manager</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://bootstrap.pypa.io/get-pip.py</span><br><span class="line">$ sudo python3 get-pip.py</span><br><span class="line">$ rm get-pip.py</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装 Python 虚拟环境 (Python virtual environments)</li>
+</ul>
+<div class="note info">
+            <p>使用Python 虚拟环境的好处是不同开发项目使用各自独立的环境，互不干扰</p>
+          </div>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pip install virtualenv virtualenvwrapper</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改 ~/.bashrc 文件，在文件后添加以下几行</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># virtualenv and virtualenvwrapper</span></span><br><span class="line"><span class="built_in">export</span> WORKON_HOME=<span class="variable">$HOME</span>/.virtualenvs</span><br><span class="line"><span class="built_in">export</span> VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3</span><br><span class="line"><span class="built_in">source</span> /usr/<span class="built_in">local</span>/bin/virtualenvwrapper.sh</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后执行 <code>source ~/.bashrc</code>使新加的环境变量定义现在生效</li>
+<li>创建一个名字为 deep_learning 的虚拟环境</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkvirtualenv deep_learning -p python3</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装-TensorFlow-和-Keras"><a href="#安装-TensorFlow-和-Keras" class="headerlink" title="安装  TensorFlow 和 Keras"></a>安装  TensorFlow 和 Keras</h2><ul>
+<li>进入到 deep_learning 虚拟环境</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ workon deep_learning</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装 NumPy，消耗约 10+ 分钟</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install numpy</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装 TensorFlow-gpu for Jetson Nano，消耗约 40+ 分钟</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 tensorflow-gpu==1.13.1+nv19.3</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ibookit.beeuc.com/2019/06/23/content-management-system-q-and-arch/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2316,7 +2564,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2341,7 +2589,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2388,7 +2638,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">15</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
