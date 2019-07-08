@@ -363,6 +363,204 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ibookit.beeuc.com/2019/07/08/NVIDIA-Jetson-Nano-Developer-Kit-GSG-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="BEEUC">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/BEEUC-Logo-500x.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iBookIt">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/08/NVIDIA-Jetson-Nano-Developer-Kit-GSG-2/" class="post-title-link" itemprop="url">NVIDIA Jetson Nano Developer Kit 新手入门 (2)</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-08 21:00:55 / 修改时间：21:41:23" itemprop="dateCreated datePublished" datetime="2019-07-08T21:00:55+08:00">2019-07-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="NVIDIA-Jetson-Nano-Developer-Kit-新手入门-2"><a href="#NVIDIA-Jetson-Nano-Developer-Kit-新手入门-2" class="headerlink" title="NVIDIA Jetson Nano Developer Kit 新手入门 (2)"></a>NVIDIA Jetson Nano Developer Kit 新手入门 (2)</h1><h2 id="安装-Jetson-Inference"><a href="#安装-Jetson-Inference" class="headerlink" title="安装 Jetson Inference"></a>安装 Jetson Inference</h2><ul>
+<li>下载 jetson inference 代码工程，并更新 submodule</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/dusty-nv/jetson-inference</span><br><span class="line">$ <span class="built_in">cd</span> jetson-inference</span><br><span class="line">$ git submodule update --init</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>执行 cmake，准备编译环境</li>
+</ul>
+<div class="note info">
+            <p>在 cmake 过程中，需要从 nvidia.app.box.com 下载文件，由于某些不可描述的网络原因，很可能会失败。我的解决办法是申请一个阿里云美西区的 ECS 服务器，在该服务器执行 jetson-inference/CMakePreBuild.sh 下载需要的文件，然后创建一个同可用区的 OSS，将文件通过 ossutil 工具上传到 OSS 中。注意使用 internal endpoint 地址，这样文件 copy 会快很多。再将 ECS 服务器释放，最后通过 ossutil 工具将文件转移到国内 ECS 服务器，同样要注意使用 internal endpoint 地址。最后从国内 ECS 服务器，使用 scp 直接下载文件到 Jetson Nano。 由于所需要的文件压缩后有大约 1G 左右，下载还是需要比较长时间。整个过程顺利的话，估计 1 个小时可以完成。</p>
+          </div>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir build</span><br><span class="line">$ <span class="built_in">cd</span> build</span><br><span class="line">$ cmake .. <span class="comment"># 这里需要注意，如果网络条件不允许直接从 nvidia.app.box.com 下载文件，就需要用其他办法先把文件下载下来</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>编译 Jetson Inference</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ make</span><br><span class="line">$ sudo make install</span><br></pre></td></tr></table></figure>
+
+<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p>Jetson Inference 编译成功之后，我们体验两个 Inference 提供的 Demo</p>
+<ul>
+<li>imagenet-camera: 使用摄像头作为视频源的图像分类</li>
+<li>detectnet-camera: 使用摄像头作为视频源的物体检测</li>
+</ul>
+<p>代码中默认使用 CSI 摄像头作为输入源，代码中 DEFAULT_CAMERA 值为 -1。由于我使用的是一个外接的逻辑 C920 摄像头，需要将其值改为 0。</p>
+<p>首先修改 jetson-inference/imagenet-camera/imagenet-camera.cpp，找到 DEFAULT_CAMERA，将值改为 0</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEFAULT_CAMERA -1        <span class="comment">// -1 for onboard camera, or change to index of /dev/video V4L2 camera (&gt;=0)</span></span></span><br></pre></td></tr></table></figure>
+
+<p>再修改 jetson-inference/detectnet-camera/detectnet-camera.cpp，同样将 DEFAULT_CAMERA 改为 0</p>
+<p>然后回到 build 目录，重新 make，更新可执行文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ make</span><br><span class="line">$ sudo make install</span><br></pre></td></tr></table></figure>
+
+<h3 id="Demo-1-imagenet-camera"><a href="#Demo-1-imagenet-camera" class="headerlink" title="Demo 1 - imagenet-camera"></a>Demo 1 - imagenet-camera</h3><p>执行 imagent-camera，启动 demo 程序。第一次启动时，会有 10 分钟左右时间加载。完成启动后会出现视频窗口，窗口上方不断显示图像分类信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~/jetson-inference/imagenet-camera</span><br><span class="line">$ <span class="built_in">cd</span> aarch64/bin/</span><br><span class="line">$ ./imagenet-camera</span><br></pre></td></tr></table></figure>
+
+<h3 id="Demo-2-detectnet-camera"><a href="#Demo-2-detectnet-camera" class="headerlink" title="Demo 2 - detectnet-camera"></a>Demo 2 - detectnet-camera</h3><p>执行 detectnet-camera, 启动 demo 程序。第一次启动时，会有 10 分钟左右时间加载。完成启动后会出现视频窗口，窗口内移动物体会被矩形阴影标注。这个 Demo 运行过一段时间之后，Nano 竟然过热，自动关机了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~/jetson-inference/detectnet-camera</span><br><span class="line">$ <span class="built_in">cd</span> aarch64/bin/</span><br><span class="line">$ ./detectnet-camera</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ibookit.beeuc.com/2019/07/07/NVIDIA-Jetson-Nano-Developer-Kit-GSG-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -408,12 +606,24 @@
                 
               
 
-              <time title="创建时间：2019-07-07 22:00:55 / 修改时间：23:24:01" itemprop="dateCreated datePublished" datetime="2019-07-07T22:00:55+08:00">2019-07-07</time>
+              <time title="创建时间：2019-07-07 22:00:55" itemprop="dateCreated datePublished" datetime="2019-07-07T22:00:55+08:00">2019-07-07</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-08 21:17:46" itemprop="dateModified" datetime="2019-07-08T21:17:46+08:00">2019-07-08</time>
               
             
           </span>
@@ -476,7 +686,7 @@
 </ul>
 <h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
 <li><a href="https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit" target="_blank" rel="noopener">NVIDIA Jetson Nano Developer Kit, Introduciton</a>  </li>
-<li><a href="https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit" target="_blank" rel="noopener">Getting Staerted with NVIDIA Jetson Nano Developer Kit</a> </li>
+<li><a href="https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit" target="_blank" rel="noopener">Getting Started with NVIDIA Jetson Nano Developer Kit</a> </li>
 <li><a href="https://www.pyimagesearch.com/2019/05/06/getting-started-with-the-nvidia-jetson-nano/" target="_blank" rel="noopener">Getting started with the NVIDIA Jetson Nano @ pyimagesearch</a> </li>
 </ul>
 <h2 id="所需材料"><a href="#所需材料" class="headerlink" title="所需材料"></a>所需材料</h2><ul>
@@ -2319,210 +2529,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ibookit.beeuc.com/2019/04/12/notarizing-mac-app/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="BEEUC">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/BEEUC-Logo-500x.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="iBookIt">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/12/notarizing-mac-app/" class="post-title-link" itemprop="url">How to upload macos App for notarization by command-line tools</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-12 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-12T00:00:00+08:00">2019-04-12</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-06-23 16:14:50" itemprop="dateModified" datetime="2019-06-23T16:14:50+08:00">2019-06-23</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Application-Development/" itemprop="url" rel="index"><span itemprop="name">Application Development</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="How-to-upload-macOS-App-for-notarization-by-command-line-tools"><a href="#How-to-upload-macOS-App-for-notarization-by-command-line-tools" class="headerlink" title="How to upload macOS App for notarization by command-line tools"></a>How to upload macOS App for notarization by command-line tools</h1><p>As required by Apple below recently, macos App developers need to upload the Apps they developed to Apple for a notarization before distributing the Apps. </p>
-<div class="note warning">
-            <p>With the public release of macOS 10.14.5, we require that all developers creating a Developer ID certificate for the first time notarize their apps, and that all new and updated kernel extensions be notarized as well. This will help give users more confidence that the software they download and run, no matter where they get it from, is not malware by showing a more streamlined Gatekeeper interface. In addition, we’ve made the following enhancements to the notarization process.</p>
-          </div>
-
-<p>Refer to <a href="https://developer.apple.com/documentation/security/notarizing_your_app_before_distribution" target="_blank" rel="noopener">Notarizing Your App Before Distribution</a> for more background. </p>
-<h2 id="How-to"><a href="#How-to" class="headerlink" title="How to"></a>How to</h2><p>To integrate the notarization steps into the CI system, we added the following steps in our automation build scripts.</p>
-<h3 id="Upload-the-App-archive"><a href="#Upload-the-App-archive" class="headerlink" title="Upload the App archive"></a>Upload the App archive</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">APP_PATH=<span class="string">"./<span class="variable">$&#123;PRODUCT_NAME&#125;</span>.app"</span></span><br><span class="line">ZIP_PATH=<span class="string">"./<span class="variable">$&#123;PRODUCT_NAME&#125;</span>.zip"</span></span><br><span class="line"></span><br><span class="line">/usr/bin/ditto -c -k --keepParent <span class="string">"<span class="variable">$APP_PATH</span>"</span> <span class="string">"<span class="variable">$ZIP_PATH</span>"</span></span><br><span class="line"></span><br><span class="line">xcrun altool --notarize-app --primary-bundle-id <span class="variable">$&#123;BUNDLE_IDENTIFIER&#125;</span> -u <span class="variable">$&#123;APP_ACCOUNT&#125;</span> -p <span class="variable">$&#123;APP_SPEC_PASSWD&#125;</span> --asc-provider <span class="string">"<span class="variable">$&#123;DEVELOPMENT_TEAM&#125;</span>"</span> --file <span class="variable">$&#123;ZIP_PATH&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>The <code>--asc-provider</code> parameter is needed for us as our App management account is being used by more than one orgnizations. Otherwise the <code>--notarize-app</code> command would fail with the following error prompt message. </p>
-<div class="note danger">
-            <p>Error: Your Apple ID account is attached to other iTunes providers. You will need to specify which provider you intend to submit content to by using the -itc_provider command. Please contact us if you have questions or need help. (1627)</p><p>However, we didn’t find how -itc_provider can be specified, but found the —asc-provider parameter. Maybe the prompt itself is a mistake.</p>
-          </div>
-
-<p>Apple’s official documentation states that the notarization could complete in about 1 hour. We found it usually complete in several minutes and we would receive the email notification shortly after we have had the archive uploaded.</p>
-<h3 id="Upload-the-installer-package"><a href="#Upload-the-installer-package" class="headerlink" title="Upload the installer package"></a>Upload the installer package</h3><p><code>xcrun altool --notarize-app --primary-bundle-id ${BUNDLE_IDENTIFIER} -u ${APP_ACCOUNT} -p ${APP_SPEC_PASSWD} --asc-provider &quot;${DEVELOPMENT_TEAM}&quot; --file ${WORKSPACE}/${RELEASE_PKG_NAME}</code></p>
-<blockquote>
-<p>Be sure to use –timestamp paramether w/ the productsign command when signing the installer package file. Otherwise the notarization could fail due to the issue that the signature doesn’t contain a valid timestamp. </p>
-</blockquote>
-<p>Refer to <a href="https://developer.apple.com/documentation/security/notarizing_your_app_before_distribution/resolving_common_notarization_issues" target="_blank" rel="noopener">Resolving common notarization issues</a>.</p>
-<h3 id="Check-the-notarization-result"><a href="#Check-the-notarization-result" class="headerlink" title="Check the notarization result"></a>Check the notarization result</h3><p>Once received the email notification of the completion of the notarization, you’d better check the notarization log  even it’s a successful result as suggested by Apple. </p>
-<p>To obtain detailed information about a particular submission, use <code>altool</code> along with the <code>notarization-info</code> flag and the UUID for the submission. The UUID is printed when the <code>altool —notarize-app</code> command finished. For more details about how to check the status and log, refer to <a href="https://developer.apple.com/documentation/security/notarizing_your_app_before_distribution/customizing_the_notarization_workflow#3087732" target="_blank" rel="noopener">Customizing the notarization workflow</a>. </p>
-<h3 id="Staple-your-App-and-the-installer-package"><a href="#Staple-your-App-and-the-installer-package" class="headerlink" title="Staple your App and the installer package"></a>Staple your App and the installer package</h3><p>Notarization produces a ticket that tells Gatekeeper that your app is notarized. After notarization completes successfully, the next time any user attempts to run your app on macOS 10.14 or later, Gatekeeper finds the ticket online. This includes users who downloaded your app before notarization. You should also attach the ticket to your software using the <code>stapler</code> tool, so that future distributions include the ticket. This ensures that Gatekeeper can find the ticket even when a network connection isn’t available. </p>
-<p>For the details about how to staple the files, refer to <a href="https://developer.apple.com/documentation/security/notarizing_your_app_before_distribution/customizing_the_notarization_workflow#3087732" target="_blank" rel="noopener">Customizing the notarization workflow</a> too. </p>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
-<li><a href="https://developer.apple.com/documentation/security/notarizing_your_app_before_distribution" target="_blank" rel="noopener">Notarizing Your App Before Distribution</a> </li>
-<li><a href="https://developer.apple.com/documentation/security/notarizing_your_app_before_distribution/resolving_common_notarization_issues" target="_blank" rel="noopener">Resolving common notarization issues</a></li>
-<li><a href="https://developer.apple.com/documentation/security/notarizing_your_app_before_distribution/customizing_the_notarization_workflow#3087732" target="_blank" rel="noopener">Customizing the notarization workflow</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
 
 
           </div>
@@ -2564,7 +2577,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

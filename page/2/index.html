@@ -107,7 +107,7 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="iBookIt">
-<meta property="og:url" content="https://ibookit.beeuc.com/archives/2019/07/index.html">
+<meta property="og:url" content="https://ibookit.beeuc.com/page/2/index.html">
 <meta property="og:site_name" content="iBookIt">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
@@ -119,7 +119,7 @@
 
   
   
-  <link rel="canonical" href="https://ibookit.beeuc.com/archives/2019/07/">
+  <link rel="canonical" href="https://ibookit.beeuc.com/page/2/">
 
 
 
@@ -129,7 +129,7 @@
   };
 </script>
 
-  <title>归档 | iBookIt</title>
+  <title>iBookIt</title>
   
 
 
@@ -187,7 +187,8 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -293,7 +294,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -342,134 +343,218 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
 
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ibookit.beeuc.com/2019/04/12/notarizing-mac-app/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="BEEUC">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/BEEUC-Logo-500x.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iBookIt">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/12/notarizing-mac-app/" class="post-title-link" itemprop="url">How to upload macos App for notarization by command-line tools</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-12 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-12T00:00:00+08:00">2019-04-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-23 16:14:50" itemprop="dateModified" datetime="2019-06-23T16:14:50+08:00">2019-06-23</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Application-Development/" itemprop="url" rel="index"><span itemprop="name">Application Development</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-      <span class="archive-page-counter">
-        
-        
+      
+
+      
         
           
-        
-        嗯..! 目前共计 11 篇日志。 继续努力。
-      </span>
-      
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
+            <h1 id="How-to-upload-macOS-App-for-notarization-by-command-line-tools"><a href="#How-to-upload-macOS-App-for-notarization-by-command-line-tools" class="headerlink" title="How to upload macOS App for notarization by command-line tools"></a>How to upload macOS App for notarization by command-line tools</h1><p>As required by Apple below recently, macos App developers need to upload the Apps they developed to Apple for a notarization before distributing the Apps. </p>
+<div class="note warning">
+            <p>With the public release of macOS 10.14.5, we require that all developers creating a Developer ID certificate for the first time notarize their apps, and that all new and updated kernel extensions be notarized as well. This will help give users more confidence that the software they download and run, no matter where they get it from, is not malware by showing a more streamlined Gatekeeper interface. In addition, we’ve made the following enhancements to the notarization process.</p>
           </div>
+
+<p>Refer to <a href="https://developer.apple.com/documentation/security/notarizing_your_app_before_distribution" target="_blank" rel="noopener">Notarizing Your App Before Distribution</a> for more background. </p>
+<h2 id="How-to"><a href="#How-to" class="headerlink" title="How to"></a>How to</h2><p>To integrate the notarization steps into the CI system, we added the following steps in our automation build scripts.</p>
+<h3 id="Upload-the-App-archive"><a href="#Upload-the-App-archive" class="headerlink" title="Upload the App archive"></a>Upload the App archive</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">APP_PATH=<span class="string">"./<span class="variable">$&#123;PRODUCT_NAME&#125;</span>.app"</span></span><br><span class="line">ZIP_PATH=<span class="string">"./<span class="variable">$&#123;PRODUCT_NAME&#125;</span>.zip"</span></span><br><span class="line"></span><br><span class="line">/usr/bin/ditto -c -k --keepParent <span class="string">"<span class="variable">$APP_PATH</span>"</span> <span class="string">"<span class="variable">$ZIP_PATH</span>"</span></span><br><span class="line"></span><br><span class="line">xcrun altool --notarize-app --primary-bundle-id <span class="variable">$&#123;BUNDLE_IDENTIFIER&#125;</span> -u <span class="variable">$&#123;APP_ACCOUNT&#125;</span> -p <span class="variable">$&#123;APP_SPEC_PASSWD&#125;</span> --asc-provider <span class="string">"<span class="variable">$&#123;DEVELOPMENT_TEAM&#125;</span>"</span> --file <span class="variable">$&#123;ZIP_PATH&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>The <code>--asc-provider</code> parameter is needed for us as our App management account is being used by more than one orgnizations. Otherwise the <code>--notarize-app</code> command would fail with the following error prompt message. </p>
+<div class="note danger">
+            <p>Error: Your Apple ID account is attached to other iTunes providers. You will need to specify which provider you intend to submit content to by using the -itc_provider command. Please contact us if you have questions or need help. (1627)</p><p>However, we didn’t find how -itc_provider can be specified, but found the —asc-provider parameter. Maybe the prompt itself is a mistake.</p>
+          </div>
+
+<p>Apple’s official documentation states that the notarization could complete in about 1 hour. We found it usually complete in several minutes and we would receive the email notification shortly after we have had the archive uploaded.</p>
+<h3 id="Upload-the-installer-package"><a href="#Upload-the-installer-package" class="headerlink" title="Upload the installer package"></a>Upload the installer package</h3><p><code>xcrun altool --notarize-app --primary-bundle-id ${BUNDLE_IDENTIFIER} -u ${APP_ACCOUNT} -p ${APP_SPEC_PASSWD} --asc-provider &quot;${DEVELOPMENT_TEAM}&quot; --file ${WORKSPACE}/${RELEASE_PKG_NAME}</code></p>
+<blockquote>
+<p>Be sure to use –timestamp paramether w/ the productsign command when signing the installer package file. Otherwise the notarization could fail due to the issue that the signature doesn’t contain a valid timestamp. </p>
+</blockquote>
+<p>Refer to <a href="https://developer.apple.com/documentation/security/notarizing_your_app_before_distribution/resolving_common_notarization_issues" target="_blank" rel="noopener">Resolving common notarization issues</a>.</p>
+<h3 id="Check-the-notarization-result"><a href="#Check-the-notarization-result" class="headerlink" title="Check the notarization result"></a>Check the notarization result</h3><p>Once received the email notification of the completion of the notarization, you’d better check the notarization log  even it’s a successful result as suggested by Apple. </p>
+<p>To obtain detailed information about a particular submission, use <code>altool</code> along with the <code>notarization-info</code> flag and the UUID for the submission. The UUID is printed when the <code>altool —notarize-app</code> command finished. For more details about how to check the status and log, refer to <a href="https://developer.apple.com/documentation/security/notarizing_your_app_before_distribution/customizing_the_notarization_workflow#3087732" target="_blank" rel="noopener">Customizing the notarization workflow</a>. </p>
+<h3 id="Staple-your-App-and-the-installer-package"><a href="#Staple-your-App-and-the-installer-package" class="headerlink" title="Staple your App and the installer package"></a>Staple your App and the installer package</h3><p>Notarization produces a ticket that tells Gatekeeper that your app is notarized. After notarization completes successfully, the next time any user attempts to run your app on macOS 10.14 or later, Gatekeeper finds the ticket online. This includes users who downloaded your app before notarization. You should also attach the ticket to your software using the <code>stapler</code> tool, so that future distributions include the ticket. This ensures that Gatekeeper can find the ticket even when a network connection isn’t available. </p>
+<p>For the details about how to staple the files, refer to <a href="https://developer.apple.com/documentation/security/notarizing_your_app_before_distribution/customizing_the_notarization_workflow#3087732" target="_blank" rel="noopener">Customizing the notarization workflow</a> too. </p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a href="https://developer.apple.com/documentation/security/notarizing_your_app_before_distribution" target="_blank" rel="noopener">Notarizing Your App Before Distribution</a> </li>
+<li><a href="https://developer.apple.com/documentation/security/notarizing_your_app_before_distribution/resolving_common_notarization_issues" target="_blank" rel="noopener">Resolving common notarization issues</a></li>
+<li><a href="https://developer.apple.com/documentation/security/notarizing_your_app_before_distribution/customizing_the_notarization_workflow#3087732" target="_blank" rel="noopener">Customizing the notarization workflow</a></li>
+</ul>
+
+          
         
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/07/08/NVIDIA-Jetson-Nano-Developer-Kit-GSG-2/" itemprop="url">
-            
-              <span itemprop="name">NVIDIA Jetson Nano Developer Kit 新手入门 (2)</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-08T21:00:55+08:00" content="2019-07-08">
-          07-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/07/07/NVIDIA-Jetson-Nano-Developer-Kit-GSG-1/" itemprop="url">
-            
-              <span itemprop="name">NVIDIA Jetson Nano Developer Kit 新手入门 (1)</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-07T22:00:55+08:00" content="2019-07-07">
-          07-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </div>
   
   
   
+  </article>
+
+
+    
+  </section>
 
   
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
 
 
 
