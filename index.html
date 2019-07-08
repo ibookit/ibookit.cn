@@ -408,7 +408,7 @@
                 
               
 
-              <time title="创建时间：2019-07-08 21:00:55 / 修改时间：21:41:23" itemprop="dateCreated datePublished" datetime="2019-07-08T21:00:55+08:00">2019-07-08</time>
+              <time title="创建时间：2019-07-08 21:00:55 / 修改时间：21:45:41" itemprop="dateCreated datePublished" datetime="2019-07-08T21:00:55+08:00">2019-07-08</time>
             
 
             
@@ -476,7 +476,7 @@
 <li>执行 cmake，准备编译环境</li>
 </ul>
 <div class="note info">
-            <p>在 cmake 过程中，需要从 nvidia.app.box.com 下载文件，由于某些不可描述的网络原因，很可能会失败。我的解决办法是申请一个阿里云美西区的 ECS 服务器，在该服务器执行 jetson-inference/CMakePreBuild.sh 下载需要的文件，然后创建一个同可用区的 OSS，将文件通过 ossutil 工具上传到 OSS 中。注意使用 internal endpoint 地址，这样文件 copy 会快很多。再将 ECS 服务器释放，最后通过 ossutil 工具将文件转移到国内 ECS 服务器，同样要注意使用 internal endpoint 地址。最后从国内 ECS 服务器，使用 scp 直接下载文件到 Jetson Nano。 由于所需要的文件压缩后有大约 1G 左右，下载还是需要比较长时间。整个过程顺利的话，估计 1 个小时可以完成。</p>
+            <p>在 cmake 过程中，需要从 nvidia.app.box.com 下载文件，由于某些不可描述的网络原因，很可能会失败。我的解决办法是申请一个阿里云美西区的 ECS 服务器，在该服务器执行 jetson-inference/CMakePreBuild.sh 下载需要的文件，然后创建一个同可用区的 OSS，将文件通过 ossutil 工具上传到 OSS 中。注意使用 internal endpoint 地址，这样文件 copy 会快很多。再将 ECS 服务器释放，然后通过 ossutil 工具将文件转移到国内 ECS 服务器，同样要注意使用 internal endpoint 地址。最后从国内 ECS 服务器，使用 scp 直接下载文件到 Jetson Nano。 由于所需要的文件压缩后有大约 1G 左右，下载还是需要比较长时间。整个过程顺利的话，估计 1 个小时可以完成。</p>
           </div>
 
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir build</span><br><span class="line">$ <span class="built_in">cd</span> build</span><br><span class="line">$ cmake .. <span class="comment"># 这里需要注意，如果网络条件不允许直接从 nvidia.app.box.com 下载文件，就需要用其他办法先把文件下载下来</span></span><br></pre></td></tr></table></figure>
