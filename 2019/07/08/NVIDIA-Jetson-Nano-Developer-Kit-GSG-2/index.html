@@ -113,7 +113,7 @@
 <meta property="og:site_name" content="iBookIt">
 <meta property="og:description" content="NVIDIA Jetson Nano Developer Kit 新手入门 (2)安装 Jetson Inference 下载 jetson inference 代码工程，并更新 submodule  123$ git clone https://github.com/dusty-nv/jetson-inference$ cd jetson-inference$ git submodule upd">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-08T13:45:41.000Z">
+<meta property="og:updated_time" content="2019-07-08T13:46:53.946Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NVIDIA Jetson Nano Developer Kit 新手入门 (2)">
 <meta name="twitter:description" content="NVIDIA Jetson Nano Developer Kit 新手入门 (2)安装 Jetson Inference 下载 jetson inference 代码工程，并更新 submodule  123$ git clone https://github.com/dusty-nv/jetson-inference$ cd jetson-inference$ git submodule upd">
@@ -410,7 +410,7 @@
                 
               
 
-              <time title="创建时间：2019-07-08 21:00:55 / 修改时间：21:45:41" itemprop="dateCreated datePublished" datetime="2019-07-08T21:00:55+08:00">2019-07-08</time>
+              <time title="创建时间：2019-07-08 21:00:55 / 修改时间：21:46:53" itemprop="dateCreated datePublished" datetime="2019-07-08T21:00:55+08:00">2019-07-08</time>
             
 
             
@@ -498,7 +498,7 @@
 <li>imagenet-camera: 使用摄像头作为视频源的图像分类</li>
 <li>detectnet-camera: 使用摄像头作为视频源的物体检测</li>
 </ul>
-<p>代码中默认使用 CSI 摄像头作为输入源，代码中 DEFAULT_CAMERA 值为 -1。由于我使用的是一个外接的逻辑 C920 摄像头，需要将其值改为 0。</p>
+<p>代码中默认使用 CSI 摄像头作为输入源，代码中 DEFAULT_CAMERA 值为 -1。由于我使用的是一个外接的罗技 C920 摄像头，需要将其值改为 0。</p>
 <p>首先修改 jetson-inference/imagenet-camera/imagenet-camera.cpp，找到 DEFAULT_CAMERA，将值改为 0</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEFAULT_CAMERA -1        <span class="comment">// -1 for onboard camera, or change to index of /dev/video V4L2 camera (&gt;=0)</span></span></span><br></pre></td></tr></table></figure>
 
