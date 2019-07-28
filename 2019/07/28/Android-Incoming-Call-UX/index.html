@@ -105,18 +105,23 @@
 
 
 
-  <meta name="description" content="请使用 PC 浏览器阅读">
-<meta name="keywords" content="C">
+  <meta name="description" content="安卓音视频通讯应用能否实现如同微信的来电通知体验安卓版本微信的来电通知体验正常情况下是如下图所示的样子，即使是在手机锁屏时也可以弹出来电提示界面。  那么其他应用是否也可以实现同样的体验呢？ 需要哪些条件当应用在前台时，应用是启动状态，只要网络连接没有问题，那么一定可以接收到从服务器端发送的任何通知消息，这时应用可以随意展示任何通知界面。因此本文主要讨论的是应用在退出到后台后，用户被其他用户呼叫的">
+<meta name="keywords" content="Android,推送">
 <meta property="og:type" content="article">
-<meta property="og:title" content="The Development Of C Language">
-<meta property="og:url" content="https://ibookit.beeuc.com/2019/06/23/The-development-of-c-language-Den/index.html">
+<meta property="og:title" content="安卓音视频通讯应用能否实现如同微信的来电通知体验">
+<meta property="og:url" content="https://ibookit.beeuc.com/2019/07/28/Android-Incoming-Call-UX/index.html">
 <meta property="og:site_name" content="iBookIt">
-<meta property="og:description" content="请使用 PC 浏览器阅读">
+<meta property="og:description" content="安卓音视频通讯应用能否实现如同微信的来电通知体验安卓版本微信的来电通知体验正常情况下是如下图所示的样子，即使是在手机锁屏时也可以弹出来电提示界面。  那么其他应用是否也可以实现同样的体验呢？ 需要哪些条件当应用在前台时，应用是启动状态，只要网络连接没有问题，那么一定可以接收到从服务器端发送的任何通知消息，这时应用可以随意展示任何通知界面。因此本文主要讨论的是应用在退出到后台后，用户被其他用户呼叫的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-23T15:14:35.717Z">
+<meta property="og:image" content="https://ibookit.beeuc.com/images/wx-incoming-call-android.png">
+<meta property="og:image" content="https://ibookit.beeuc.com/images/app-self-lanuch.png">
+<meta property="og:image" content="https://ibookit.beeuc.com/images/android-key-permissions.png">
+<meta property="og:image" content="https://ibookit.beeuc.com/images/wx-incoming-call-msg.png">
+<meta property="og:updated_time" content="2019-07-28T12:57:33.877Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="The Development Of C Language">
-<meta name="twitter:description" content="请使用 PC 浏览器阅读">
+<meta name="twitter:title" content="安卓音视频通讯应用能否实现如同微信的来电通知体验">
+<meta name="twitter:description" content="安卓音视频通讯应用能否实现如同微信的来电通知体验安卓版本微信的来电通知体验正常情况下是如下图所示的样子，即使是在手机锁屏时也可以弹出来电提示界面。  那么其他应用是否也可以实现同样的体验呢？ 需要哪些条件当应用在前台时，应用是启动状态，只要网络连接没有问题，那么一定可以接收到从服务器端发送的任何通知消息，这时应用可以随意展示任何通知界面。因此本文主要讨论的是应用在退出到后台后，用户被其他用户呼叫的">
+<meta name="twitter:image" content="https://ibookit.beeuc.com/images/wx-incoming-call-android.png">
 
 
 
@@ -124,7 +129,7 @@
 
   
   
-  <link rel="canonical" href="https://ibookit.beeuc.com/2019/06/23/The-development-of-c-language-Den/">
+  <link rel="canonical" href="https://ibookit.beeuc.com/2019/07/28/Android-Incoming-Call-UX/">
 
 
 
@@ -134,7 +139,7 @@
   };
 </script>
 
-  <title>The Development Of C Language | iBookIt</title>
+  <title>安卓音视频通讯应用能否实现如同微信的来电通知体验 | iBookIt</title>
   
 
 
@@ -367,7 +372,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ibookit.beeuc.com/2019/06/23/The-development-of-c-language-Den/">
+    <link itemprop="mainEntityOfPage" href="https://ibookit.beeuc.com/2019/07/28/Android-Incoming-Call-UX/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="BEEUC">
@@ -384,7 +389,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">The Development Of C Language
+          <h1 class="post-title" itemprop="name headline">安卓音视频通讯应用能否实现如同微信的来电通知体验
 
               
             
@@ -410,7 +415,7 @@
                 
               
 
-              <time title="创建时间：2019-06-23 16:17:07 / 修改时间：23:14:35" itemprop="dateCreated datePublished" datetime="2019-06-23T16:17:07+08:00">2019-06-23</time>
+              <time title="创建时间：2019-07-28 20:00:00 / 修改时间：20:57:33" itemprop="dateCreated datePublished" datetime="2019-07-28T20:00:00+08:00">2019-07-28</time>
             
 
             
@@ -432,7 +437,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Computer-History/" itemprop="url" rel="index"><span itemprop="name">Computer History</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Application-Development/" itemprop="url" rel="index"><span itemprop="name">Application Development</span></a></span>
 
                 
                 
@@ -474,8 +479,36 @@
       
 
       
-        <p>请使用 PC 浏览器阅读</p>
-<div class="pdf" target="/pdf/The-development-of-c-language-Den.pdf" height></div>
+        <h1 id="安卓音视频通讯应用能否实现如同微信的来电通知体验"><a href="#安卓音视频通讯应用能否实现如同微信的来电通知体验" class="headerlink" title="安卓音视频通讯应用能否实现如同微信的来电通知体验"></a>安卓音视频通讯应用能否实现如同微信的来电通知体验</h1><h2 id="安卓版本微信的来电通知体验"><a href="#安卓版本微信的来电通知体验" class="headerlink" title="安卓版本微信的来电通知体验"></a>安卓版本微信的来电通知体验</h2><p>正常情况下是如下图所示的样子，即使是在手机锁屏时也可以弹出来电提示界面。</p>
+<p><img src="/images/wx-incoming-call-android.png" alt="安卓版本微信视频来电通知"></p>
+<p>那么其他应用是否也可以实现同样的体验呢？</p>
+<h2 id="需要哪些条件"><a href="#需要哪些条件" class="headerlink" title="需要哪些条件"></a>需要哪些条件</h2><p>当应用在前台时，应用是启动状态，只要网络连接没有问题，那么一定可以接收到从服务器端发送的任何通知消息，这时应用可以随意展示任何通知界面。因此本文主要讨论的是应用在退出到后台后，用户被其他用户呼叫的情况。由于安卓系统对于后台进程管理越来越严格，国内手机厂商出于为手机节电等考虑主流国产品牌手机对后台进程的管理更加严格，在应用退到后台时，通常很快就会结束运行。在这种情况下，如果用户被呼叫，服务器端是无法直接发送任何消息给用户应用的。</p>
+<p>应用在非启动状态，被呼叫时，首先要解决的是如何接收到通知消息的问题。这种情况下，典型的解决方案是使用推送通知，先将推送消息发送给用户的手机，然后再利用推送消息的处理机制唤醒应用。</p>
+<p>原生的安卓系统使用的是 Google FCM 服务来接收推送消息，由于国内的网络情况，通常在国内无法访问 Google FCM，因此无法使用 FCM 实现推送功能。国内主流手机厂商，多数也因此裁剪掉了系统中的 Google FCM 功能。这也导致很多第三方推送服务的出现，目前使用比较广泛的有极光、个推、信鸽、阿里云等。但是尴尬的是，使用第三方推送时，APP 需要集成第三方推送 SDK，推送服务本身也是应用服务而非系统服务，同样存在应用被停止后无法启动，从而无法接收到消息的问题。虽然第三方推送厂商设计了如共享消息通道、多应用互相拉起等机制，但是手机厂商也为了节电，更加严格地限制应用或服务的启动。由此形成了第三方推送厂商越是积极的设法启动应用，手机厂商越是积极的限制应用启动的恶性循环。</p>
+<h3 id="使用手机厂商的推送通道"><a href="#使用手机厂商的推送通道" class="headerlink" title="使用手机厂商的推送通道"></a>使用手机厂商的推送通道</h3><p>为了更好的解决这个问题，目前主流国产手机厂商，比如小米、华为、Oppo &amp; Vivo 等都各自提供了自己的推送通道服务，手机系统中提供的自有消息服务是系统服务，所以不需要应用程序在启动状态，也可以接收到推送消息。这样就可以解决应用没有启动时，就无法接收到推送消息的问题。</p>
+<p>手机厂商提供的推送通道，通常都能发送多种消息类型。比如小米推送提供通知消息和透传消息。其中通知消息不需要应用启动，推送服务接收到通知消息时，只需要将通知内容展示到屏幕。透传消息，则不需要显示任何内容，推送服务接收到透传消息时，将消息交给相应的应用来处理。所以，要实现微信来电通知的功能，需要使用手机厂商的推送通道服务，并且使用透传消息，这样在应用处理这个消息时，展示来电通知界面。</p>
+<div class="note info">
+            <h4 id="集成多家手机厂商推送-SDK"><a href="#集成多家手机厂商推送-SDK" class="headerlink" title="集成多家手机厂商推送 SDK"></a>集成多家手机厂商推送 SDK</h4><p>为了达到理想的接收推送效果，应用需要集成每一个主流手机厂商（华为、小米、Oppo &amp; Vivo 等）的推送 SDK。</p>
+          </div> 
+
+<h3 id="放开应用自启动权限"><a href="#放开应用自启动权限" class="headerlink" title="放开应用自启动权限"></a>放开应用自启动权限</h3><p>因为接收到透传推送消息后，需要交给应用自己来处理，所以应用需要能够被自动启动，这就必须打开该应用的自启动权限。</p>
+<p><img src="/images/app-self-lanuch.png" alt="打开自启动权限"></p>
+<p>解决了推送的问题，还需要放开多项其他必要的权限。</p>
+<h3 id="打开其他必要权限"><a href="#打开其他必要权限" class="headerlink" title="打开其他必要权限"></a>打开其他必要权限</h3><p>因为接收到来电通知之后，应用需要显示出通知界面，所以需要打开 “锁屏显示” 和 “后台弹出界面” 两个权限。</p>
+<p><img src="/images/android-key-permissions.png" alt="必要权限"></p>
+<h2 id="是否真的可行"><a href="#是否真的可行" class="headerlink" title="是否真的可行"></a>是否真的可行</h2><p>通过本文前边的讨论，理论上任何安卓应用都可以实现和微信相同的来电通知功能，但是实际情况下是很难保证达到一样的使用体验的。主要是由于以下一些原因。</p>
+<ul>
+<li>普通应用的自启动、锁屏显示、后台弹出界面等关键权限都是默认关闭的。而手机厂商会给微信特权，默认打开了所有权限。普通应用如果想达到一样的效果，必须有足够的影响力和方法，引导用户主动打开这些权限。</li>
+<li>国产安卓手机系统往往提供了各种节电模式，很多常用的模式会限制网络使用，很多节电模式都会自动在锁屏状态关闭网络，这样在手机锁屏后是无法收到任何推送消息的。当然，这种情况下，微信也无法接收到来电通知。</li>
+<li>通知相关的权限通常也需要正确设置。</li>
+</ul>
+<h2 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h2><p>由于实现友好的来电通知界面，在现实上难以达到理想效果，可以考虑放弃实现这样的体验，而是采用和 iOS 应用一样的，只是展示通知消息的体验。由于国内 App Store 发布的应用不能使用 CallKit 功能 (具体原因可以参考 <a href="./CallKit-not-Allowed-in-China.md">在中国 App Store 发布的应用不能使用 CallKit 功能</a>)，即使是微信也只能做到显示推送通知，而不能出现和 Facetime 一样的来电界面。</p>
+<p><img src="/images/wx-incoming-call-msg.png" alt="iOS 微信来电通知"></p>
+<p>另外，还可以考虑在推送消息无法到达的情况下，补发短信通知消息。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://dev.mi.com/console/doc/detail?pId=1292" target="_blank" rel="noopener">小米推送常见问题汇总</a></p>
+<p><a href="http://docs.jiguang.cn/jpush/client/Android/android_faq/" target="_blank" rel="noopener">极光推送 Android SDK FAQ</a></p>
+<p><a href="http://docs.getui.com/getui/question/android/" target="_blank" rel="noopener">个推推送 Andriod SDK 常见问题</a></p>
+
       
     </div>
 
@@ -501,7 +534,9 @@
         
         <div class="post-tags">
           
-            <a href="/tags/C/" rel="tag"># C</a>
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/推送/" rel="tag"># 推送</a>
           
         </div>
       
@@ -514,8 +549,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/23/Unix-and-beyond-an-interview-with-ken/" rel="next" title="Unix and Beyond: An interview with Ken Thompson">
-                <i class="fa fa-chevron-left"></i> Unix and Beyond: An interview with Ken Thompson
+              <a href="/2019/07/28/CallKit-not-Allowed-in-China/" rel="next" title="在中国 App Store 发布的应用不能使用 CallKit 功能">
+                <i class="fa fa-chevron-left"></i> 在中国 App Store 发布的应用不能使用 CallKit 功能
               </a>
             
           </div>
@@ -523,10 +558,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/23/The-unix-time-sharing-system-Den-and-Ken-in-ACM/" rel="prev" title="The Unix Time-Sharing System">
-                The Unix Time-Sharing System <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -574,8 +605,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -737,6 +777,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安卓音视频通讯应用能否实现如同微信的来电通知体验"><span class="nav-number">1.</span> <span class="nav-text">安卓音视频通讯应用能否实现如同微信的来电通知体验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安卓版本微信的来电通知体验"><span class="nav-number">1.1.</span> <span class="nav-text">安卓版本微信的来电通知体验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需要哪些条件"><span class="nav-number">1.2.</span> <span class="nav-text">需要哪些条件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用手机厂商的推送通道"><span class="nav-number">1.2.1.</span> <span class="nav-text">使用手机厂商的推送通道</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#集成多家手机厂商推送-SDK"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">集成多家手机厂商推送 SDK</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#放开应用自启动权限"><span class="nav-number">1.2.2.</span> <span class="nav-text">放开应用自启动权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打开其他必要权限"><span class="nav-number">1.2.3.</span> <span class="nav-text">打开其他必要权限</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#是否真的可行"><span class="nav-number">1.3.</span> <span class="nav-text">是否真的可行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建议"><span class="nav-number">1.4.</span> <span class="nav-text">建议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.5.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
